@@ -147,11 +147,16 @@ namespace BattleshipGame
                 return false;
             }
 
-            for (int i = startRow; i <= endRow; i++)
+            for (int i = startRow - 1; i <= endRow + 1; i++)
             {
-                for (int j = startCol; j <= endCol; j++)
+                for (int j = startCol - 1; j <= endCol + 1; j++)
                 {
-                    if (board[i, j] != '-')
+                    if ((i >= startRow && i <= endRow) && (j >= startCol && j <= endCol))
+                    {
+                        continue;
+                    }
+
+                    if (i < 0 || i >= BoardSize || j < 0 || j >= BoardSize || board[i, j] != '-')
                     {
                         return false;
                     }
