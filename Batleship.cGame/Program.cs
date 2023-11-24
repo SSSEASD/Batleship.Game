@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace BattleshipGame
 {
@@ -230,11 +230,18 @@ namespace BattleshipGame
 
         private void PrintBoard(char[,] board)
         {
-            Console.WriteLine("  0 1 2 3 4 5 6 7 8 9");
+            Console.WriteLine("   1 2 3 4 5 6 7 8 9 10");
 
             for (int i = 0; i < BoardSize; i++)
             {
-                Console.Write($"{i} ");
+                if (i<9)
+                {
+                    Console.Write($" {i+1} ");
+                }
+                else
+                {
+                    Console.Write($"{i+1} ");
+                }
 
                 for (int j = 0; j < BoardSize; j++)
                 {
