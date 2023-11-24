@@ -4,7 +4,7 @@ namespace BattleshipGame
 {
     public class BattleshipGame
     {
-        private const int BoardSize = 10;
+        private const int BoardSize = 12;
         private const int NumShips = 10;
 
         private char[,] player1Board;
@@ -94,10 +94,10 @@ namespace BattleshipGame
 
                 while (!isValidPlacement)
                 {
-                    Console.Write("Введите координату по строке (0-9): ");
+                    Console.Write("Введите координату по строке (1-10): ");
                     int startRow = int.Parse(Console.ReadLine());
 
-                    Console.Write("Введите координату по столбцу (0-9): ");
+                    Console.Write("Введите координату по столбцу (1-10): ");
                     int startCol = int.Parse(Console.ReadLine());
 
                     Console.Write("Введите направление (H - горизонтально, V - вертикально): ");
@@ -230,17 +230,25 @@ namespace BattleshipGame
 
         private void PrintBoard(char[,] board)
         {
-            Console.WriteLine("   1 2 3 4 5 6 7 8 9 10");
+            Console.WriteLine("   X 1 2 3 4 5 6 7 8 9 10 X");
 
             for (int i = 0; i < BoardSize; i++)
             {
-                if (i<9)
+                if (i==0)
                 {
-                    Console.Write($" {i+1} ");
+                    Console.Write($" X ");
+                }
+                else if (i<=9)
+                {
+                    Console.Write($" {i} ");
+                }
+                else if(i==11)
+                {
+                    Console.Write($" X ");
                 }
                 else
                 {
-                    Console.Write($"{i+1} ");
+                    Console.Write($"{i} ");
                 }
 
                 for (int j = 0; j < BoardSize; j++)
