@@ -120,7 +120,9 @@ namespace BattleshipGame
 
         private bool ValidateShipPlacement(char[,] board, int startRow, int startCol, char direction, int shipSize)
         {
-            if (startRow < 0 || startRow >= BoardSize || startCol < 0 || startCol >= BoardSize)
+            int boardSize = board.GetLength(0);
+
+            if (startRow < 0 || startRow >= boardSize || startCol < 0 || startCol >= boardSize)
             {
                 return false;
             }
@@ -135,14 +137,14 @@ namespace BattleshipGame
 
             if (direction == 'H')
             {
-                endCol += shipSize - 1;
+                endCol += shipSize;
             }
             else
             {
-                endRow += shipSize - 1;
+                endRow += shipSize;
             }
 
-            if (endRow >= BoardSize || endCol >= BoardSize)
+            if (endRow >= boardSize || endCol >= boardSize)
             {
                 return false;
             }
@@ -151,14 +153,12 @@ namespace BattleshipGame
             {
                 for (int j = startCol - 1; j <= endCol + 1; j++)
                 {
-                    if ((i >= startRow && i <= endRow) && (j >= startCol && j <= endCol))
+                    if (i >= 0 && i < boardSize && j >= 0 && j < boardSize)
                     {
-                        continue;
-                    }
-
-                    if (i < 0 || i >= BoardSize || j < 0 || j >= BoardSize || board[i, j] != '-')
-                    {
-                        return false;
+                        if (board[i, j] != '-')
+                        {
+                            return false;
+                        }
                     }
                 }
             }
